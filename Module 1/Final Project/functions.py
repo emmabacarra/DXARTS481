@@ -26,6 +26,7 @@ def open_random_image(image_folder):
     image_files = [f for f in os.listdir(image_folder)] # if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp'))
     if image_files:
         random_image = random.choice(image_files)
+        print(f"Displaying image: {random_image}")
         image_path = os.path.join(image_folder, random_image)
 
         image_window = tk.Toplevel(root)
@@ -68,6 +69,7 @@ def open_random_video(video_folder):
 
     # Choose a random video
     random_video = random.choice(video_files)
+    print(f"Playing video: {random_video}")
     video_path = os.path.join(video_folder, random_video)
 
     # Open the video window
@@ -78,6 +80,8 @@ def open_random_video(video_folder):
     # Create a Canvas to display video frames
     canvas = tk.Canvas(video_window, width=width, height=height)
     canvas.pack()
+
+
 
     # Function to play video frames
     def play_video():
@@ -132,6 +136,7 @@ def open_media(file_path, duration=5):
 
     if file_extension in ['.mp3']:
         # Play audio using pygame
+        print(f"Playing audio: {file_path}")
         pygame.mixer.init()
         pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
@@ -144,6 +149,7 @@ def open_media(file_path, duration=5):
 
     elif file_extension in ['.mp4']:
         # Play video using OpenCV
+        print(f"Playing audio: {file_path}")
         cap = cv2.VideoCapture(file_path)
         start_time = time.time()
 
@@ -172,13 +178,11 @@ def open_media(file_path, duration=5):
 
 def open_image_until_exit(image_path, width=400, height=400):
     def display_image():
-        # Create the root Tkinter window
         root = tk.Tk()
         root.title("Image Viewer")
         root.geometry(f"{width}x{height}")
-        root.protocol("WM_DELETE_WINDOW", lambda: None)  # Disable manual closing
+        root.protocol("WM_DELETE_WINDOW", lambda: None)
 
-        # Open and display the image
         img = Image.open(image_path)
         img = img.resize((width, height), Image.Resampling.LANCZOS)
         img_tk = ImageTk.PhotoImage(img)
@@ -189,6 +193,5 @@ def open_image_until_exit(image_path, width=400, height=400):
 
         root.mainloop()
 
-    # Run the Tkinter window in a separate thread
     thread = threading.Thread(target=display_image, daemon=True)
     thread.start()
