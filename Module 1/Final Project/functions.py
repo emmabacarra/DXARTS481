@@ -16,7 +16,6 @@ def open_random_image(image_folder):
 
     root = tk.Tk()
     root.withdraw()
-    root.overrideredirect(True)
     
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
@@ -199,19 +198,18 @@ def open_image_until_exit(image_path, width=400, height=400):
     def display_image():
         root = tk.Tk()
         root.title("Image Viewer")
-        root.overrideredirect(True)
         root.geometry(f"{width}x{height}")
-        root.protocol("WM_DELETE_WINDOW", lambda: None)
-
+        root.protocol("WM_DELETE_WINDOW", root.quit)  # Close window properly
+        
         img = Image.open(image_path)
-        img = img.resize((width, height), Image.Resampling.LANCZOS)
+        # img = img.resize((width, height), Image.Resampling.LANCZOS)
         img_tk = ImageTk.PhotoImage(img)
 
         panel = tk.Label(root, image=img_tk)
-        panel.image = img_tk
+        panel.image = img_tk  # Keep a reference to the image to prevent it from being garbage collected
         panel.pack()
 
         root.mainloop()
 
-    thread = threading.Thread(target=display_image, daemon=True)
-    thread.start()
+    # Ensure the image viewer is run in the main thread
+    threading.Thread(target=display_image, daemon=True).start()

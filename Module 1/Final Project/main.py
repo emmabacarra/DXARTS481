@@ -1,12 +1,11 @@
 import subprocess
 import time
-import functions as f
-import os
 
     
 if __name__ == "__main__":
     subprocess.Popen(['python', 'openalbumcover.py'])
     subprocess.Popen(['python', 'opensong.py'])
+    # subprocess.Popen(['python', 'lyrics.py'])
 
     for _ in range(4):
         subprocess.Popen(['python', 'openvideo.py'])
