@@ -16,6 +16,7 @@ def open_random_image(image_folder):
 
     root = tk.Tk()
     root.withdraw()
+    root.overrideredirect(True)
     
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
@@ -43,8 +44,6 @@ def open_random_image(image_folder):
         root.mainloop()
 
 
-
-
 def open_random_video(video_folder):
     width = 400  # Width of the video window
     height = 300  # Height of the video window
@@ -69,7 +68,6 @@ def open_random_video(video_folder):
 
     # Choose a random video
     random_video = random.choice(video_files)
-    print(f"Playing video: {random_video}")
     video_path = os.path.join(video_folder, random_video)
 
     # Open the video window
@@ -81,6 +79,27 @@ def open_random_video(video_folder):
     canvas = tk.Canvas(video_window, width=width, height=height)
     canvas.pack()
 
+    # Function to play video frames
+    def play_video():
+        cap = cv2.VideoCapture(video_path)
+
+        def update_frame():
+            ret, frame = cap.read()
+            if ret:
+                frame = cv2.resize(frame, (width, height))  # Resize frame to match the window
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Convert color to RGB for Tkinter
+                img = ImageTk.PhotoImage(Image.fromarray(frame))
+                canvas.create_image(0, 0, anchor=tk.NW, image=img)
+                canvas.image = img
+                video_window.after(10, update_frame)  # Update frame every 10 ms
+            else:
+                cap.release()
+                video_window.destroy()  # Close the video window when the video ends
+
+        update_frame()
+
+    play_video()
+    root.mainloop()
 
 
     # Function to play video frames
@@ -180,6 +199,7 @@ def open_image_until_exit(image_path, width=400, height=400):
     def display_image():
         root = tk.Tk()
         root.title("Image Viewer")
+        root.overrideredirect(True)
         root.geometry(f"{width}x{height}")
         root.protocol("WM_DELETE_WINDOW", lambda: None)
 
