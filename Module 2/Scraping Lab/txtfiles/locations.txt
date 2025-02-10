@@ -1,32 +1,33 @@
-New YorkNew York
-Water MillNew York
-New YorkNew York
-RossCalifornia
-WashingtonDistrict of Columbia
-DallasTexas
-Coral GablesFlorida
-New YorkNew York
-ConshohockenPennsylvania
-New YorkNew York
-BrunswickMaine
 SeattleWashington
-AustinTexas
-PalmyraNew Jersey
-DallasTexas
-Sound BeachNew York
-Los AngelesCalifornia
-East HamptonNew York
-New YorkNew York
-New YorkNew York
-Sierra MadreCalifornia
-New CanaanConnecticut
-GreenwichConnecticut
-West Palm BeachFlorida
-West HollywoodCalifornia
-San FranciscoCalifornia
-New YorkNew York
+MattituckNew York
 New YorkNew York
 El CerritoCalifornia
+DallasTexas
+Water MillNew York
+BrunswickMaine
 GreenwichConnecticut
-MattituckNew York
+Sound BeachNew York
+RossCalifornia
+New YorkNew York
+New YorkNew York
+San FranciscoCalifornia
+New YorkNew York
 Los AngelesCalifornia
+Coral GablesFlorida
+New YorkNew York
+West Palm BeachFlorida
+New YorkNew York
+Los AngelesCalifornia
+BrooklynNew York
+New YorkNew York
+New CanaanConnecticut
+ConshohockenPennsylvania
+East HamptonNew York
+DallasTexas
+West HollywoodCalifornia
+WashingtonDistrict of Columbia
+Sierra MadreCalifornia
+PalmyraNew Jersey
+New YorkNew York
+GreenwichConnecticut
+AustinTexas
