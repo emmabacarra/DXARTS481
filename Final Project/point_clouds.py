@@ -76,24 +76,16 @@ def process_file(file_path, out_folder, file_index, max_points=50000, use_increm
         gc.collect()
         
         # Then apply UMAP on PCA results with optimized parameters
-        # reducer = umap.UMAP(
-        #     init='pca',           # Initialize with PCA results
-        #     n_neighbors=10,       # Local vs global relationship
-        #     min_dist=0.1,         # Determines clustering
-        #     n_components=3,       # 3D output
-        #     metric='euclidean',   # Fastest distance metric
-        #     low_memory=True,      # Optimize for memory usage
-        #     n_jobs=-1,            # Use all available cores
-        #     random_state=None     # Allow parallelism
-        # )
-        # reducer_coords = reducer.fit_transform(pca_coords)
-        reducer = TSNE(
-            n_components=3,
-            perplexity=30, 
-            n_iter=300, 
-            n_jobs=-1, 
-            random_state=None
-            )
+        reducer = umap.UMAP(
+            init='pca',           # Initialize with PCA results
+            n_neighbors=10,       # Local vs global relationship
+            min_dist=0.1,         # Determines clustering
+            n_components=3,       # 3D output
+            metric='euclidean',   # Fastest distance metric
+            low_memory=True,      # Optimize for memory usage
+            n_jobs=-1,            # Use all available cores
+            random_state=None     # Allow parallelism
+        )
         reducer_coords = reducer.fit_transform(pca_coords)
         
         # Clear PCA results from memory
